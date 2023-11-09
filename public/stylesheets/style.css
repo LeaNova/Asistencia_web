@@ -1,0 +1,20 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.form-st-1 {
+  min-width: 30vw;
+  max-width: 40vw;
+}
+
+.w-st-fit {
+  width: fit-content;
+}
+
+.qr-st-1 {
+  width: 20rem;
+}

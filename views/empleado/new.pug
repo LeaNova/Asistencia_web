@@ -1,0 +1,85 @@
+extends ../layout
+
+block content
+  div
+    if result
+      div
+        p= message
+  div.text-center.my-4
+    h1
+      | Nuevo empleado
+  div.form-st-1.mx-auto
+    form(class="" action="" method="POST")
+      div.mb-3.row
+        label(for="nombre" class="col-sm-3 col-form-label") Nombre
+        div.col
+          if body
+            input(type="text" class="form-control" name="nombre" id="nombre" value=body.nombre)
+          else
+            input(type="text" class="form-control" name="nombre" id="nombre")
+      div.mb-3.row
+        label(for="apellido" class="col-sm-3 col-form-label") Apellido
+        div.col
+          if body
+            input(type="text" class="form-control" name="apellido" id="apellido" value=body.apellido)
+          else
+            input(type="text" class="form-control" name="apellido" id="apellido")
+      div.mb-3.row
+        label(for="fechaNac" class="col-sm-3 col-form-label") Fecha nacimiento
+        div.col
+          if body
+            input(type="date" class="form-control" name="fechaNac" id="fechaNac" value=body.fechaNac)
+          else 
+            input(type="date" class="form-control" name="fechaNac" id="fechaNac")
+      div.mb-3.row
+        label(for="dni" class="col-sm-3 col-form-label") DNI
+        div.col
+          if body 
+            input(type="text" class="form-control" name="dni" id="dni" value=body.dni)
+          else
+            input(type="text" class="form-control" name="dni" id="dni")
+      div.mb-3.row
+        label(for="idGenero" class="col-sm-3 col-form-label") Genero
+        div.col
+          select(name="idGenero" class="form-select" id="genero")
+            each gen in generos
+              option(value=gen.idGenero)= gen.nombre
+      div.mb-3.row
+        label(for="idEstCivil" class="col-sm-3 col-form-label") Estado civil
+        div.col
+          select(name="idEstCivil" class="form-select" id="estCivil") 
+            each est in estCiviles
+              option(value=est.idEstCivil)= est.nombre
+      div.mb-3.row
+        label(for="direccion" class="col-sm-3 col-form-label") Direccion
+        div.col
+          if body 
+            input(type="text" class="form-control" name="direccion" id="direccion" value=body.direccion)
+          else
+            input(type="text" class="form-control" name="direccion" id="direccion")
+      div.mb-3.row
+        label(for="telefono" class="col-sm-3 col-form-label") Telefono
+        div.col
+          if body 
+            input(type="text" class="form-control" name="telefono" id="telefono" value=body.telefono)
+          else 
+            input(type="text" class="form-control" name="telefono" id="telefono")
+      div.mb-3.row
+        label(for="mail" class="col-sm-3 col-form-label") Mail
+        div.col
+          if body 
+            input(type="text" class="form-control" name="mail" id="mail" value=body.mail)
+          else
+            input(type="text" class="form-control" name="mail" id="mail")
+      div.mb-3.row
+        label(for="password" class="col-sm-3 col-form-label") Contraseña
+        div.col
+          input(type="password" class="form-control" name="pass" id="password")
+      div.mb-3.row
+        label(for="idRol" class="col-sm-3 col-form-label") Rol
+        div.col
+          select(name="idRol" class="form-select" id="rol") 
+            each rol in roles
+              option(value=rol.idRol)= rol.nombre
+      div 
+        input(type="submit" class="btn btn-primary" value="Cargar")

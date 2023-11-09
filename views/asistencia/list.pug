@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  div.mt-4
+    if asistencia
+      table.table.table-hover
+        thead.table-info
+          tr 
+            th
+              | Nombre y Apellido
+            th 
+              | Ingreso
+            th
+              | Salida
+
+        each asis in asistencia
+          tbody 
+            tr
+              td
+                =asis.usuario.nombre + ", " + asis.usuario.apellido
+              td
+                =asis.horaIngreso
+              td
+                =asis.horaSalida

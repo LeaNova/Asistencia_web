@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet" href="/css/bootstrap.min.css")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/js/bootstrap.bundle.min.js")
+    script(src="https://kit.fontawesome.com/d188bd0be3.js" crossorigin="anonymous")
+  body.bg-light
+    header
+      nav.navbar.navbar-expand-sm.navbar-toggleable-sm.navbar-light.bg-secondary.bg-gradient.border-bottom.box-shadow
+        div.container.container-fluid
+          div.navbar-collapse.collapse.d-sm-inline-flex.justify-content-between
+            ul.navbar-nav.flex-grow-1
+              if(usuario)
+                li.nav-item
+                  a(class="nav-link text-white" href="/")
+                    i(class="fa-solid fa-house")
+                li.nav-item
+                  a(class="nav-link text-white" href="/asistencia/qr/list") Asistencias
+                li.nav-item
+                  a(class="nav-link text-white" href="/empleado/list") Empleados
+
+                li.w-100
+
+                li.nav-item.dropdown
+                  a(class="nav-link text-white dropdown-toggle" href="#" role="button" id="menu" data-bs-toggle="dropdown" aria-expanded="false") Administracion
+
+                  ul(class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="menu")
+                    li
+                      a(class="dropdown-item" href="/empleado/new") Cargar empleado
+                    li
+                      a(class="dropdown-item" href="/asistencia/qr/create") Generar QR
+              else
+                li.nav-item
+                  a(class="nav-link text-white" href="/usuario/login") Iniciar sesión
+    main(class="container")
+      section 
+        if(success)
+          div(class="alert alert-success alert-dismissible fade show " role="alert")
+            =success
+            button(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
+        if(warning)
+          div(class="alert alert-warning alert-dismissible fade show mx-auto w-st-fit" role="alert")
+            =warning
+            button(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
+        if(error)
+          div(class="alert alert-danger alert-dismissible fade show" role="alert")
+            =error
+            button(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
+   
+      div
+        block content

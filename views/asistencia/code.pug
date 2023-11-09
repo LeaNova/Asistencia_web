@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  div.text-center.my-4
+    p Si no hay un código QR para el dia de la fecha, puedes generar uno nuevo haciendo clic en el boton "Nuevo QR".
+    p Caso contrario si ya hay un código creado solo haz clic en "Ver QR" para que salte el QR en una nueva ventana.
+  div.text-center.py-4
+    if(code)
+      h2
+        | El código de hoy ya fue generado
+      p 
+        | el código es el siguiente: 
+        =code.codIngreso
+      div
+        a(class="btn btn-primary" href="/asistencia/qr" target="blank") Ver QR
+    else
+      h2
+        | No hay código para el día de hoy
+      div
+        form(method="POST") 
+          input(type="submit" class="btn btn-primary" value="Nuevo QR")

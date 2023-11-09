@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+  div.mt-4
+    if empleados
+      table.table.table-hover
+        thead.table-info
+          tr
+            th
+              | Nombre
+            th
+              | Apellido
+            th 
+              | DNI
+            th
+              | Puesto
+            th
+        tbody 
+          each emp in empleados
+            tr
+              td
+                =emp.nombre
+              td 
+                =emp.apellido
+              td
+                =emp.dni
+              td
+                =emp.puesto
+              td 
+                a(href=`#${emp.idUsuario}`)
+                  i(class="fa-solid fa-pen")
+    else
+      div
+        | Sin resultados...

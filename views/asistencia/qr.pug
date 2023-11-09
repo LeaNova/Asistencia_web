@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet" href="/css/bootstrap.min.css")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/js/bootstrap.bundle.min.js")
+  body.bg-light
+    div.text-center.my-4
+      h1
+        =fecha
+    div.card.qr-st-1.mx-auto
+      h5.card-header.text-center
+        | Ingreso
+      img(class="float-start" src=qr)

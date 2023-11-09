@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div.text-center.my-4
+    h1
+      | Bienvenido
+  div.text-center
+    if(usuario)
+      p Hola de nuevo!
+      p En el menú de 
+        strong "administración" 
+        | puedes "Cargar" un nuevo empleado o "Generar" un nuevo código QR para que los empleados marquen su llegada y salida.
+    else
+      | Inicia sesión para poder utilizar el sistema de control de asistencias
