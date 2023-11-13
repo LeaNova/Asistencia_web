@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  div.mt-4
+  div.mt-4.w-75.mx-auto
     if asistencia
       table.table.table-hover
         thead.table-info
@@ -12,7 +12,6 @@ block content
               | Ingreso
             th
               | Salida
-
         each asis in asistencia
           tbody 
             tr
@@ -22,3 +21,6 @@ block content
                 =asis.horaIngreso
               td
                 =asis.horaSalida
+    else
+      div.text-center
+        p No hay resultados

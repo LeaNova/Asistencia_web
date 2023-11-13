@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  div(class="accordion mt-4" id="accordionPass")
+    div.accordion-item.w-75.mx-auto
+      h2(class="accordion-header" id="headingOne")
+        button(class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePass" aria-expanded="true" aria-controls="collapsePass")
+          | Cambiar contraseña
+      div(id="collapsePass" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionPass")
+        div.accordion-body
+          form(action="" method="POST")
+            div.mb-3
+              label(for="oldPass" class="form-label") Contraseña actual
+              input(type="password" class="form-control" name="oldPass" id="oldPass")
+            div.mb-3
+              label(for="newPass" class="form-label") Nueva contraseña
+              input(type="password" class="form-control" name="newPass" id="newPass")
+            div.mb-3
+              label(for="newPass2" class="form-label") 
+              input(type="password" class="form-control" id="newPass2")
+            div
+              input(type="submit" class="btn btn-primary" value="Cambiar")

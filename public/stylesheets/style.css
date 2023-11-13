@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -7,8 +7,18 @@ a {
 }
 
 .form-st-1 {
+  min-width: 600px;
+  max-width: 450px;
+}
+
+.form-st-2 {
   min-width: 30vw;
   max-width: 40vw;
+}
+
+.login {
+  max-width: 400px;
+  min-width: 300px;
 }
 
 .w-st-fit {

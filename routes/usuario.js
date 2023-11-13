@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios')
 
+var auth = require('../middleware/auth')
+
 const URL_BASE = require('../config')
 
 router.get('/login', async (req, res) => {
@@ -53,23 +55,36 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/logout', async (req, res) => {
+  req.session.destroy();
+  res.redirect('/')
+});
+
+router.get('/configuracion', auth, (req, res) => {
+  const usuario = req.session.usuario
+
+  res.render('./usuario/configuracion', { title: 'Configuración', usuario: usuario });
+});
+
+
+router.post('/configuracion', auth, async (req, res) => {
+  const usuario = req.session.usuario
+  const token = req.session.token
+  const body = req.body
+  let _success, _error
+
+  await axios.patch(URL_BASE + '/usuario/edit/pass', body, {
+    headers: {
+      'Authorization': token,
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then(() => {
+    _success = 'Contraseña actualizada'
+  }).catch(() => {
+    _error = 'Error en actualizar la contraseña'
+  })
+
+  res.render('./usuario/configuracion', { title: 'Configuración', usuario: usuario, success: _success, error: _error });
+});
+
 module.exports = router;
-
-function allGood(body) {
-  if(body.nombre == '' | containsNum(body.nombre)) return false
-  if(body.apellido == '' | containsNum(body.apellido)) return false
-  if(body.dni == '' | containsChar(body.dni)) return false
-  if(body.fechaNac == '') return false
-  if(body.direccion == '') return false
-  if(body.telefono == '' | containsChar(body.telefono)) return false
-  if(body.mail == '' | !body.mail.includes('@')) return false
-  return true
-}
-
-function containsNum(str) {
-  return /[0-9]/.test(str)
-}
-
-function containsChar(str) {
-  return /[a-zA-z]/.test(str)
-}

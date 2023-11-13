@@ -1,19 +1,21 @@
 extends ../layout
 
 block content
-  div(class="col-5")
-    form(action="" method="POST")
-      div(class="mb-3")
+  div.login.mx-auto.mt-5.py-4.border.border-primary.rounded.bg-ligth
+    h2.text-center.pb-3
+      | Iniciar sesión
+    form(class="w-75 mx-auto" action="" method="POST")
+      div.mb-3
         label(for="mail" class="form-label") Mail
         if body
           input(class="form-control" type="text" name="mail" id="mail" value=body.mail required)
         else
           input(class="form-control" type="text" name="mail" id="mail" required)
-      di(class="mb-3")
+      div.mb-3
         label(for="pass" class="form-label") Contraseña
         input(class="form-control" type="password" name="pass" id="pass" required)
-      div 
+      if(result)
+        div.text-center
+          =result
+      div.text-center.mt-3
         input(type="submit" class="btn btn-primary" value="Entrar")
-    if(result)
-      div
-        =result

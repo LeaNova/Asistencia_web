@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+  if result
+    div.mx-auto.mt-4.py-4.border.border-primary.rounded.bg-ligth.form-st-1
+      h1.text-center.mb-4
+        =result.nombre + " " + result.apellido
+      hr
+      div.px-4
+        div.mb-3.row
+          div.col
+            div.fw-bold
+              | DNI
+            div.ms-2
+              =result.dni
+          div.col
+            div.fw-bold
+              | Fecha nacimiento
+            div.ms-2
+              =result.fechaNac
+        div.mb-3.row
+          div.col
+            div.fw-bold
+              | Genero
+            div.ms-2
+              =result.genero
+          div.col
+            div.fw-bold
+              | Estado civil
+            div.ms-2
+              = result.estCivil
+        div.mb-3.row
+          div.col
+            div.fw-bold
+              | Telefono
+            div.ms-2
+              =result.telefono
+          div.col
+            div.fw-bold
+              | Mail
+            div.ms-2
+              =result.mail
+        div.mb-3
+          div.fw-bold
+            | Direccion
+          div.ms-2
+            =result.direccion
+        div.mb-3.row
+          div.col
+            div.fw-bold
+              | Rol
+            div.ms-2
+              = result.rol
+          div.col
+            div.fw-bold
+              | Fecha de ingreso
+            div.ms-2
+              = result.fechaIngreso
+      hr
+      div.text-center
+        a(class="btn btn-primary" href=`/empleado/edit/disponible/${result.idUsuario}`)
+          =result.isDisponible ? "Baja" : "Alta"
+  else
+    | no hay resultado...

@@ -19,7 +19,7 @@ html
                 li.nav-item
                   a(class="nav-link text-white" href="/asistencia/qr/list") Asistencias
                 li.nav-item
-                  a(class="nav-link text-white" href="/empleado/list") Empleados
+                  a(class="nav-link text-white" href="/empleado/list/all") Empleados
 
                 li.w-100
 
@@ -28,24 +28,30 @@ html
 
                   ul(class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="menu")
                     li
+                      a(class="dropdown-item" href="/usuario/configuracion") Configuracion
+                    hr
+                    li
                       a(class="dropdown-item" href="/empleado/new") Cargar empleado
                     li
                       a(class="dropdown-item" href="/asistencia/qr/create") Generar QR
+                    hr
+                    li
+                      a(class="dropdown-item" href="/usuario/logout") Cerrar sesión
               else
                 li.nav-item
                   a(class="nav-link text-white" href="/usuario/login") Iniciar sesión
     main(class="container")
       section 
         if(success)
-          div(class="alert alert-success alert-dismissible fade show " role="alert")
+          div(class="alert alert-success alert-dismissible fade show my-4 mx-auto w-st-fit" role="alert")
             =success
             button(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
         if(warning)
-          div(class="alert alert-warning alert-dismissible fade show mx-auto w-st-fit" role="alert")
+          div(class="alert alert-warning alert-dismissible fade show my-4 mx-auto  w-st-fit" role="alert")
             =warning
             button(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
         if(error)
-          div(class="alert alert-danger alert-dismissible fade show" role="alert")
+          div(class="alert alert-danger alert-dismissible fade show my-4 mx-auto  w-st-fit" role="alert")
             =error
             button(type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close")
    

@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  div.mt-4
+  div.mt-4.w-75.mx-auto
     if lista
       table.table.table-hover
         thead.table-info
@@ -20,7 +20,6 @@ block content
                 =item.fecha
               td
                 a(href=`/asistencia/list/${item.codIngreso}`) Ver
-          
-    div.d-grid.gap-2.d-md-block
-      a(class="btn btn-primary" href="/asistencia/qr/create" role="button") Nuevo código
-      a(class="btn btn-primary" href="/asistencia/qr" role="button" target="blank") Ver último
+    div.text-center
+      a(class="btn btn-primary mx-2" href="/asistencia/qr/create" role="button") Nuevo código
+      a(class="btn btn-primary mx-2" href="/asistencia/qr" role="button" target="blank") Ver último

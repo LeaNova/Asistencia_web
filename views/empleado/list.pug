@@ -1,34 +1,41 @@
 extends ../layout
 
 block content
-  div.mt-4
+  div.mt-4.w-75.mx-auto
     if empleados
+      div.text-center.my-4
+        h1
+          =search
       table.table.table-hover
         thead.table-info
           tr
             th
-              | Nombre
-            th
-              | Apellido
+              | Nombre y Apellido
             th 
               | DNI
             th
               | Puesto
             th
+              | Disponible
+            th
         tbody 
           each emp in empleados
             tr
               td
-                =emp.nombre
-              td 
-                =emp.apellido
+                =emp.nombre + ", " + emp.apellido
               td
                 =emp.dni
               td
                 =emp.puesto
+              td
+                =emp.disponible ? "Si" : "No"
               td 
-                a(href=`#${emp.idUsuario}`)
-                  i(class="fa-solid fa-pen")
+                a(href=`/empleado/info/${emp.idUsuario}`)
+                  i(class="fa-solid fa-circle-info me-2" title="Ver")
+      div.text-center
+        a(class="btn btn-primary mx-2" href="/empleado/list/all") Todos
+        a(class="btn btn-primary mx-2" href="/empleado/list/disponibles") Disponibles
+        a(class="btn btn-primary mx-2" href="/empleado/list/nodisponibles") No disponibles
     else
       div
         | Sin resultados...

@@ -96,7 +96,7 @@ router.get('/qr', async (req, res) => {
       let seconds = time.getSeconds()
       if (seconds < 10) seconds = "0" + seconds
 
-      let qr = await QRCode.toDataURL(codigo.codIngreso + "&" + hora + "&" + seconds)
+      let qr = await QRCode.toDataURL('QRasistencia&' + codigo.codIngreso + "&" + hora + "&" + seconds)
       
       res.render('./asistencia/qr', { title: 'Asistencia', usuario: usuario, fecha: fecha, qr: qr });
     }
@@ -110,7 +110,7 @@ router.get('/list/:codIngreso', async (req, res) => {
   const usuario = req.session.usuario
   const token = req.session.token
 
-  let _warning, _error, asistencia
+  let _error, asistencia
 
   await axios.get(URL_BASE + '/asistencia/get/' + req.params.codIngreso, {
     headers: {
@@ -118,12 +118,11 @@ router.get('/list/:codIngreso', async (req, res) => {
     }
   }).then((result) => {
     asistencia = result.data
-    if(result.data.length == 0) _warning = 'Aun no hay nadie que ingrese.'
   }).catch((error) => {
-    _error = error.code
+    _error = 'Error en obtener resultado'
   })
 
-  res.render('./asistencia/list', { title: 'Listado', usuario: usuario, warning: _warning, error: _error, asistencia: asistencia});
+  res.render('./asistencia/list', { title: 'Listado', usuario: usuario, error: _error, asistencia: asistencia});
 });
 
 router.get('/list', async (req, res) => {
@@ -166,7 +165,7 @@ router.get('/list/:codIngreso', async (req, ser) => {
 module.exports = router;
 
 function fixDate(lista) {
-  let mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+  let mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
 
   lista.forEach(element => {
     let fecha = new Date(Date.parse(element.fecha))
@@ -179,7 +178,7 @@ function fixDate(lista) {
 function castToDate(fecha) {
   let aux = new Date(Date.parse(fecha))
 
-  let mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+  let mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
   let dia = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
 
   return `${dia[aux.getDay()]} ${aux.getDate()} de ${mes[aux.getMonth()]} de ${aux.getFullYear()}`
